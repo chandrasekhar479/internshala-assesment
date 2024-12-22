@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hunting Guide</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Hunting Guide</h1>
+        <nav>
+            <ul>
+                <li><a href="#tips">Tips</a></li>
+                <li><a href="#gear">Gear</a></li>
+                <li><a href="#locations">Locations</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="tips">
+        <h2>Hunting Tips</h2>
+        <p>Learn some tips on how to become a successful hunter...</p>
+        <ul>
+            <li>Tip 1: Be patient and stay alert.</li>
+            <li>Tip 2: Know your environment.</li>
+            <li>Tip 3: Choose the right hunting gear.</li>
+        </ul>
+    </section>
+
+    <section id="gear">
+        <h2>Essential Hunting Gear</h2>
+        <p>Here’s a list of essential hunting gear you will need:</p>
+        <ul>
+            <li>Hunting rifle</li>
+            <li>Binoculars</li>
+            <li>Camouflage clothing</li>
+        </ul>
+    </section>
+
+    <section id="locations">
+        <h2>Top Hunting Locations</h2>
+        <p>Explore the best places for hunting:</p>
+        <ul>
+            <li>Alaska - known for its vast wilderness.</li>
+            <li>Montana - home to elk and deer.</li>
+            <li>Colorado - famous for its mountainous terrain and wildlife.</li>
+        </ul>
+    </section>
+
+    <footer id="contact">
+        <h2>Contact Us</h2>
+        <form id="contactForm">
+            <label for="name">Your Name:</label>
+            <input type="text" id="name" name="name" required>
+            <label for="email">Your Email:</label>
+            <input type="email" id="email" name="email" required>
+            <textarea id="message" name="message" placeholder="Your message..." required></textarea>
+            <button type="submit">Submit</button>
+        </form>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
