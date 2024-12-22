@@ -1,0 +1,34 @@
+const express = require("express");
+const mongoose = require("mongoose");
+const cors = require("cors");
+
+const app = express();
+
+// Middleware
+app.use(cors());
+app.use(express.json());
+
+// Connect to MongoDB
+mongoose.connect("mongodb://localhost:27017/earplugs", {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+
+// Schema and Model
+const InsuranceSchema = new mongoose.Schema({
+  planName: String,
+  price: Number,
+  description: String,
+});
+
+const Insurance = mongoose.model("Insurance", InsuranceSchema);
+
+// API Routes
+app.get("/plans", async (req, res) => {
+  const plans = await Insurance.find();
+  res.json(plans);
+});
+
+// Start Server
+const PORT = 5000;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
