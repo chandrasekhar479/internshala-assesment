@@ -1,0 +1,70 @@
+import React, { useState, useEffect } from 'react';
+import './App.css';
+
+const App = () => {
+    const [strategies, setStrategies] = useState([]);
+    const [formData, setFormData] = useState({ title: '', description: '' });
+
+    // Fetch strategies from the backend
+    const fetchStrategies = async () => {
+        const res = await fetch('http://localhost:5000/strategies');
+        const data = await res.json();
+        setStrategies(data);
+    };
+
+    useEffect(() => {
+        fetchStrategies();
+    }, []);
+
+    // Handle form submission
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const res = await fetch('http://localhost:5000/strategies', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(formData),
+        });
+        const newStrategy = await res.json();
+        setStrategies([...strategies, newStrategy]);
+        setFormData({ title: '', description: '' });
+    };
+
+    // Handle deletion
+    const handleDelete = async (id) => {
+        await fetch(`http://localhost:5000/strategies/${id}`, { method: 'DELETE' });
+        setStrategies(strategies.filter((strategy) => strategy._id !== id));
+    };
+
+    return (
+        <div className="App">
+            <h1>Animal Calls: Ways to Attract Leads</h1>
+            <form onSubmit={handleSubmit}>
+                <input
+                    type="text"
+                    placeholder="Strategy Title"
+                    value={formData.title}
+                    onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+                    required
+                />
+                <textarea
+                    placeholder="Description"
+                    value={formData.description}
+                    onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+                    required
+                />
+                <button type="submit">Add Strategy</button>
+            </form>
+            <div className="strategy-list">
+                {strategies.map((strategy) => (
+                    <div key={strategy._id} className="strategy-card">
+                        <h3>{strategy.title}</h3>
+                        <p>{strategy.description}</p>
+                        <button onClick={() => handleDelete(strategy._id)}>Delete</button>
+                    </div>
+                ))}
+            </div>
+        </div>
+    );
+};
+
+export default App;
